@@ -1,0 +1,285 @@
+{% extends 'home/base.html' %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<h1 class="text-title text-center mt-5 mr-5">
+  Formulaire d'inscription - Bénévole
+</h1>
+
+<div class="container border mt-4 p-4 mb-5">
+       
+    <div class="container mt-5 pb-5">
+        
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+       
+      <div class=" shadow mt-3 ml-5">
+        <form method="POST" class="mt-5" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="cards">
+            <div class="card-headers">
+              <div class="row justify-content-around">
+              
+                <div class="col-2">
+                <div class="image-upload">
+                  <label for="file-input">
+                    <img class="previewImg"  style="width: 130px; height: 130px;" />
+                  </label>
+            
+                  <input id="file-input" type="file" style="display: none;" name="photo_profile" />
+                  </div>
+                </div>
+                <div class="form-group col-6">
+                  <div class="row mt-2">
+                      <div class="col-4">
+                        <label>
+                          Nom utilisateur :
+                         
+                        </label>
+                      </div>
+                      <div class="col-7">
+                        <input type="text" name="username" class="form-control" />
+                      </div>
+                    </div> 
+                      <div class="row mt-2">
+                      <div class="col-4">
+                        <label>
+                          Email :
+                          
+                        </label>
+                      </div>
+                      <div class="col-7">
+                        <input type="email" name="email" class="form-control" />
+                      </div>
+                    </div>
+                    <div class="row mt-2">
+                      <div class="col-4">
+                        <label>
+                          Mot de pass :
+                          
+                        </label>
+                      </div>
+                      <div class="col-7">
+                        <input type="password" name="password1" class="form-control" />
+                      </div>
+                    </div>  
+                      <div class="row mt-2">
+                      <div class="col-4">
+                        <label>
+                         Comfirm Mot de pass :
+                          
+                        </label>
+                      </div>
+                      <div class="col-7">
+                        <input type="password" name="password2" class="form-control" />
+                      </div>
+                    </div>
+                
+                </div>
+              </div>
+            
+            </div>
+            
+            <div class="card-body pt-3"> 
+              
+                  <div class="row mt-3">
+                    <div class="col-4 mt-2" >
+                      <label>
+                        Nom Complet  :
+                      
+                      </label>
+                    </div>
+                    <div class="col-7 mt-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="nomComplet"
+                      />
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-4 mt-3">
+                      <label>
+                        Genre  :
+                        
+                      </label>
+                    </div>
+                    <div class="col-7 mt-2">
+                      <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example" name="genre">
+                        <option selected>-- Aucun --</option>
+                  <option value="FEMME">FEMME</option>
+                  <option value="HOMME">HOMME</option>
+                </select>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-4 mt-2">
+                      <label>
+                        Téléphone :
+                       
+                      </label>
+                    </div>
+                    <div class="col-7">
+                      <input type="text" class="form-control" name="telephone" />
+                    </div>
+                  </div>  
+                  <div class="row mt-3">
+                    <div class="col-4 mt-2">
+                      <label>
+                        Cin :
+                       
+                      </label>
+                    </div>
+                    <div class="col-7">
+                      <input type="text" class="form-control" name="cin" />
+                    </div>
+                  </div>
+                 
+                    <div class="row mt-3">
+                      <div class="col-4 mt-2">
+                          <label for="exampleFormControlTextarea3">   Adresse :
+                              </label>
+                      </div>
+                          <div class="col-7 mt-2">
+                              <textarea class="form-control" id="exampleFormControlTextarea3" rows="4"name="adresse"
+                              ></textarea>
+  
+                      </div>
+                      
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-4 mt-2">
+                          <label>
+                            Ville :
+                            
+                          </label>
+                        </div>
+                        <div class="col-7">
+                          <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example"  name="ville">
+                            <option selected>-- Aucun --</option>
+                            <option value="Casablanca">Casablanca</option>
+                            <option value="Agadir">Agadir</option>
+                            <option value="Essaouira ">Essaouira</option>
+                            <option value="Fes">Fes</option>
+                            <option value="Marrakech">Marrakech</option>
+                            <option value="Meknes">Meknes</option>
+                            <option value="Oujda">Oujda</option>
+                            
+          
+                            <option value="Rabat">Rabat</option>
+                            <option value="Tanger">Tanger</option>
+          
+                            <option value="Tetouan">Tetouan</option>
+                            
+          
+                                </select>
+                        </div>
+                      </div>
+                    <div class="row mt-3">
+                        <div class="col-4 mt-2">
+                          <label>
+                            Date de Naissance :
+                           
+                          </label>
+                        </div>
+                        <div class="col-7">
+                          <input
+                            type="date"
+                            class="form-control"
+                            name="date_naissance"
+                          />
+                        </div>
+                      </div>
+             
+                    <div class="row mt-3">
+                        <div class="col-4 mt-2">
+                            <label for="exampleFormControlTextarea3">   Domaine Dexperience :
+                                </label>
+                        </div>
+                            <div class="col-7 mt-2">
+                                <textarea class="form-control" id="exampleFormControlTextarea3" rows="4"name="domaine_experience"
+                                ></textarea>
+    
+                        </div>
+                        
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-4 mt-2">
+                            <label for="exampleFormControlTextarea3">   Biographie :
+                                </label>
+                        </div>
+                            <div class="col-7 mt-2">
+                                <textarea class="form-control" id="exampleFormControlTextarea3" rows="4"name="biographie"
+                                ></textarea>
+    
+                        </div>
+                        
+                      </div>
+                
+  
+  
+              <div class="row mt-3">
+                  <div class="col-4 mt-2">
+                      <label for="exampleFormControlTextarea6">
+                          Activité/préférences/centre:
+                         
+                    </label>
+                  </div>
+                  <div class="col-7">
+                    <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example"  name="activiter_prefere">
+                  <option selected>- Choisir une valeur -</option>
+                  <option value="Cadre">Cadre</option>
+                  <option value="Salarié">Salarié</option>
+
+                  <option value="Sans emploi">Sans emploi</option>
+                  <option value="Commercent">Commercent</option>
+
+                  <option value="Etudiant">Etudiant</option>
+                  <option value="Autre ">Autre</option>
+
+                      </select>
+                </div>
+            </div>
+             
+  </div>
+  </div>
+  
+  <div class="col-11 text-center mt-3">      
+       
+    
+        <button class="btn gradient-bg" type="submit">Créer Compte</button>
+        
+
+   
+  </div>
+        
+              <!-- <div class="col-12 text-center mt-3">
+                <input
+                  class="btn btn-secondary mt-4"
+                  type="submit"
+                  value="Signup"
+                />
+              </div> -->
+       
+         
+          <div class="border-top mt-4 pt-2 ml-5">
+            <small
+              >Si vous avez déjà un compte, vous pouvez<a
+                href="{% url 'login_user' %}"
+              >
+                Connecter
+              </a></small
+            >
+          </div>
+        </form>
+      </div>
+</div>
+{% endblock content %}
+
+

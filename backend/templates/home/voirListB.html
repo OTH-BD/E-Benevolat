@@ -1,0 +1,44 @@
+{% extends 'home/base.html' %}
+{% block content %}{% load static %}
+<div class=" mt-4 pb-5">
+   
+   <div class="container">
+   <div class=" mt-5 pb-5">
+
+
+    <div class="col-11 text-center mt-3">   
+     <button type="button" class="btn btn-danger mt-5" data-bs-toggle="modal" data-bs-target="#myModal">Liste des bénévoles</button>
+   </div>    
+        
+      <div class="modal mt-5" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            
+         
+             <form action="{% url 'post' %}" method="POST">
+               {% csrf_token %}
+               
+               <div class="modal-content">
+                <div class="d-flex justify-content-center text-danger">
+                <h4>Liste des bénévoles participants</h4>
+                </div>
+                {% for par in participers %}
+                 <div class="modal-header">
+                    <td>{{par.id_benevole}}</td>
+                 </div>
+                 {% endfor %}
+                
+                  <div class="modal-footer">
+                    <div class="col-11 text-center mt-3">    
+                   <input class="btn gradient-bg" type="submit" value="Confirmer"/>  
+                   <input type="button" class="btn gradient-bg" data-bs-dismiss="modal" value="Annuler"/>
+                    </div>
+                
+                  <div>
+               </div>
+             </form>
+         </div>
+      </div>
+   </div>
+  </div>
+</div>
+{% endblock %}

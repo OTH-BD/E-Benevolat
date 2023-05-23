@@ -1,0 +1,47 @@
+{% extends 'home/base.html' %}
+{% block content %}{% load static %}
+   <div class=" mt-4 pb-5">
+   
+    <div class="container">
+    <div class=" mt-5 pb-5">
+
+      <div class="col-11 text-center mt-3">   
+   
+         <button type="button" class="btn gradient-bg mt-5" data-bs-toggle="modal" data-bs-target="#myModal">Confirmer votre participation</button>
+      </div>
+        
+      <div class="modal mt-5" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+             <form action="{% url 'post' %}" method="POST">
+               {% csrf_token %}
+               <div class="modal-content">
+                 <div class="modal-header">
+                  <input type="text" class="form-control mb-3" name="nom_mission"  value="{{participers.nom}}"/>
+                 </div>
+                 {% for par in benParticiper %}
+                 <div class="modal-body">
+                     <input class="form-control mb-3 disabled" type="text" name="nom_benevole" value="{{par.username}}"/>
+                 </div>
+                 {% endfor %}
+               
+                 <div class="modal-footer">
+                  <div class="col-11 text-center mt-3">    
+                   <input class="btn gradient-bg" type="submit" value="Confirmer"/>  
+                   <input type="button" class="btn gradient-bg" data-bs-dismiss="modal" value="Annuler"/>
+                  </div>
+                
+                  <div>
+               </div>
+             </form>  
+             
+         </div>
+      </div>
+   </div>
+     
+ 
+    
+       
+     </div>
+</div>
+
+{% endblock content %}

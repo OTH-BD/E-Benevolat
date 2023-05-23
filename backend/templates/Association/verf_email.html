@@ -1,0 +1,23 @@
+{% extends 'home/base.html' %}
+{% block content %}{% load static %}
+
+
+<div class="row my-4">
+   <div class="col-md-6 offset-md-3">
+       <div class="border p-3 bg-white">
+           <h4>Confirmation de Participation</h4>
+           <hr>
+           <div class="alert alert-info">
+               <h5>
+                   Un e-mail a été envoyé à l'adresse e-mail. Il contient des instructions que vous devez suivre pour Comfirmer la participation.
+                     </h5>
+           </div>
+          
+       </div>
+       <div class="col-11 text-center mt-">   
+       <a class="btn gradient-bg mt-4 mx-4 " href="{% url 'benevole' %}">Retour </a>
+       </div>
+   </div>
+</div>
+    
+{% endblock content %}

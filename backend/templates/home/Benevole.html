@@ -1,0 +1,36 @@
+{% extends 'home/base.html' %}
+ {% block content %}{% load static %}
+ <div class="container mt-4 pb-5">
+
+  <h1 class="text-title text-center mt-2 mr-5">Consulter les missions</h1>
+  {% for mission in missions %}
+  
+  <div class="d-inline-flex m-2 p-4">
+  <div class="swiper-wrapper mt-2">
+
+    <div class="cause-wrap" style="">
+        
+      <img src="{{mission.photo_mission.url}}" class="card-img-top" style="width:300px; height:300px" alt="..."/> 
+ 
+      <div class="card-body" style="width:300px; height:300px"">
+      <input style="text-align:center" class="form-control" type="text"  value="{{mission.domaine}}" readonly >
+      <h5 class="card card-title mt-3">{{mission.nom}}</h5>
+      <p class="card-text">Nom Asoociation: {{mission.association.association.nom_association}}</p>
+      <p class="card-text">Date Mission: {{mission.date_publier}}</p>
+      <p class="card-text">Date fin: {{mission.date_fin}}</p>
+      <p class="card-text">Nombre participant: {{mission.nombre_participant}}</p>
+     
+      {% if mission.fin_du_mission %}
+      <a href="{% url 'benevole' %}" class="btn gradient-bg m-4 text-white disabled" >Mission Expirée</a>
+      {% else %}
+      <a href="{% url 'ConfirmeParticipation' mission.id %}" style="" class="btn gradient-bg m-4 text-white">Je Veux Participer</a>
+      {% endif  %}
+    
+      </div>
+    
+    </div>
+  </div>
+ </div>
+ {% endfor %}
+
+{% endblock content %}

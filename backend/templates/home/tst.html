@@ -1,0 +1,52 @@
+{% extends 'home/base.html' %}
+{% block content %}
+
+
+
+<div class="col-11 text-center mt-3">   
+   
+   
+    <td><a type="button" class="btn btn-danger mt-5" data-bs-toggle="modal" data-bs-target="#myModal" class="col-11 text-center mt-3">Voir liste des bénévoles</a></td>
+    
+ </div>
+    <div class="modal mt-5" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        
+      
+           <div class="modal-content">
+            <div class="d-flex justify-content-center text-danger">
+            <h4>Liste des bénévoles participants</h4>
+            </div>
+            
+            <div class="modal-header">
+             {%for par in participerss %}
+           
+            <td>{{par.id_benevole}}</td>
+             <br>
+        
+             {% endfor %} 
+             
+
+            </div>
+              <div class="modal-footer">
+                <div class="col-11 text-center mt-3">    
+               <input class="btn gradient-bg" type="submit" value="Confirmer"/>  
+               <input type="button" class="btn gradient-bg" data-bs-dismiss="modal" value="Annuler"/>
+                </div>
+            
+              <div>
+           </div>
+          
+     </div>
+   </div>
+
+
+
+
+
+
+
+
+
+
+{% endblock%}

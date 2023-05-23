@@ -1,0 +1,68 @@
+{% extends 'home/base.html' %} {% block content %}{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Form</title>
+  </head>
+  <body class="single-page">
+                      
+            <div class="page-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>Formulaire de contact</h1>
+                        </div><!-- .col -->
+                    </div><!-- .row -->
+                </div><!-- .container -->
+            </div><!-- .page-header -->
+            
+            <div class="contact-page-wrap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-5">
+                            <div class="entry-content">
+                                <h2>Echangez avec nous</h2>
+        
+                                <p>Si vous avez des questions ou un problème, un membre du personnel sera toujours heureux de vous aider. N'hésitez pas à nous contacter par e-mail et nous nous assurerons de vous répondre dans les plus brefs délais.</p>
+        
+                                <ul class="contact-social d-flex flex-wrap align-items-center">
+                                    <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+        
+                                <ul class="contact-info p-0">
+                                   
+                                    <li><i class="fa fa-envelope"></i><span>othmane.boudali01@gmail.com</span></li>
+                                    
+                                </ul>
+                            </div>
+                        </div><!-- .col -->
+                  
+                        <div class="col-12 col-lg-7">
+                            <form method='POST' class="contact-form" >
+                                {% csrf_token %}
+                                <input type="text" placeholder="subject" name="subject">
+                                <input type="email" placeholder="Email" name="email">
+                                <textarea rows="15" cols="6" placeholder="Messages" name="message"></textarea>
+        
+                                <span>
+                                    <input class="btn gradient-bg" type="submit" value="Contact">
+                                </span>
+                            </form>
+                    <!-- .contact-form -->
+        
+                        </div><!-- .col -->
+        
+                    </div><!-- .row -->
+                </div><!-- .container -->
+            </div>
+  </body>
+</html>
+{% endblock content %}

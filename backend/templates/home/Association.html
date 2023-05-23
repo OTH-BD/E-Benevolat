@@ -1,0 +1,80 @@
+{% extends 'home/base.html' %} {% block content %}{% load static %}
+<h1>Liste des missions</h1>
+<div class=" mt-5 pb-5">
+
+  
+
+  <div class="d-grid gap-2 d-md-flex justify-content-end">
+    <a class="btn gradient-bg"  href="{% url 'mission' %}">Créer une mission</a>
+  
+  </div>
+  <table class="table table-hover mt-4" style="margin: 0px auto;">
+    <thead >
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Domaine</th>
+        <th scope="col">Lieu</th>
+        <th scope="col">Date</th> 
+        <th style="white-space: nowrap;width: 1%;" scope="col">Nombre des participants</th>
+        <th style="white-space: nowrap;width: 1%;" scope="col">Nom d'association</th>
+        <th style="white-space: nowrap;width: 1%;" scope="col">Liste des bénévoles</th>
+        <th style="white-space: nowrap;width: 1%;" scope="col">Modifier ou Supprimer</th>
+        
+       
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for miss in missions %}
+        <th scope="row">{{miss.id}}</th>
+        <td>{{miss.nom}}</td>
+        <td>{{miss.domaine}}</td>
+        <td>{{miss.lieu}}</td>
+        <td style="white-space: nowrap;width: 1%;" >{{miss.date_publier}}</td>
+        <td style="text-align: center;">{{miss.nombre_participant}}</td>
+        <td>{{miss.association.association.nom_association}}</td>
+      
+        
+      
+        <td><a href="{% url 'tst' %}">Voir liste des bénévoles</a></td>
+    
+     
+          
+
+      
+
+
+
+
+
+
+        <td><a href="{% url 'mission_detail' miss.slug %}">  &nbsp; &nbsp;
+          &nbsp;<img alt="modif" src="{% static 'images/modif3.png' %}"
+          width="40"
+          height="40" 
+         /> 
+         &nbsp;
+         &nbsp;
+         &nbsp;
+         &nbsp;
+         &nbsp;
+         &nbsp;
+         &nbsp;
+          <img alt="modif"
+          src="{% static 'images/modif2.png' %}"
+          width="40"
+          height="40"/>
+        </a>
+      </td>
+    
+        
+         
+
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

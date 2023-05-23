@@ -1,0 +1,1037 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello World</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+   
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="{% static 'css/elegant-fonts.css' %}" />
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}" />
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+  
+
+    <header class="site-header">
+      <div class="top-header-bars">
+        <div class="container">
+          <div class="row flex-wrap justify-content-center justify-content-lg-between align-items-lg-center">
+            <div class="col-12 col-lg-8 d-none d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
+              <div class="header-bar-emails">
+                MAIL: <a href="{% url 'contactez_nous' %}">othmane.boudali01@gmail.com</a>
+              </div>
+
+              <div class="header-bar-text">
+                <p>
+                  PHONE: <span>06/00/00/00/01 / +212+60000000</span>
+                </p>
+              </div>
+            </div>
+            {% if user.is_authenticated %}
+            <div>
+              <div class="vh-header--account">
+                <div class="dropdown show">
+                  <a style="color: #fff;text-decoration: navajowhite;background: #262222;" class="btn donate-btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if user.est_association %}
+                    <span>
+                      <strong>
+                        {{user.username}}
+                      </strong>
+                    </span>
+
+                    {% elif user.est_benevolat %}
+                      <span class="text-gray text-height-1">
+                        
+                        {{user.username}}
+                      </span>
+                      
+                    {% endif %}
+                   
+                  </a>
+                 
+                  <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
+                    <div class="d-lg-flex justify-content-between dropdown-item">
+
+                    </div>
+                    {% if user.est_association %}
+                    <a style="background-color:orange;" class="dropdown-item">
+                     Association
+                        </a>
+                    {% elif user.est_benevolat %}
+                    <a class="dropdown-item" style="background-color:orange;" >
+                     Bénévole
+                        </a>
+
+                        {% endif %}
+                     {% if user.est_benevolat %}
+                        <a class="dropdown-item" href="{% url 'benevole' %}">
+                          Consulter les missions
+                            </a>
+                        
+                        <a class="dropdown-item" href="{% url 'profileBenevole'  %}">
+                          Profile
+                        </a>
+                        <a class="dropdown-item" href="{% url 'temoignage' %}">
+                         Temoignages
+                            </a>
+                        {% elif user.est_association %}
+                        <a class="dropdown-item" href="{% url 'association' %}">
+                          Consulter mes missions
+                            </a>
+                        <a class="dropdown-item" href="{% url 'profileA' %}">
+                          Profile
+                        </a>
+    
+                      {% endif %}
+                        
+                    
+                    <a href="{% url 'logout_user' %}"  class="dropdown-item">
+                      Déconnexion
+                    </a>
+                  </div>
+                 
+                </nav>
+              </div>
+            </div>
+            
+            </div>
+            
+            {%else%}
+            <div class="d-flex flex-row-reverse bd-highlight">
+              <div class="donate-btn">
+                <a class="p-3 bd-highlight" href="{% url 'registerB' %}">
+                  je deviens bénévole
+                </a>
+                <a
+                  class="p-3 bd-highlight" href="{% url 'registerA' %}"
+                >
+                  je suis une association
+                </a>
+              </div>
+            </div>
+            {% endif%}
+          </div>
+        </div>
+      </div>
+      <div class="nav-bar">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
+              <div class="site-branding d-flex align-items-center">
+                <a class="d-block" href="/" rel="home">
+                  <img
+                    class="d-block"
+                    src="{% static 'images/logo1.png' %}"
+                    alt="logo"
+                  />
+                </a>
+              </div>
+              <nav class="site-navigation d-flex justify-content-end align-items-center">
+                {% if user.is_authenticated %}
+                
+              </div>
+                
+                {% else %}
+               
+                <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
+                
+                    <nav class="site-navigation d-flex justify-content-end align-items-center">
+                    <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
+                  <li class="current-menu-item">
+                    <a href="/">Acceuil</a>
+                  </li>
+                  <li>
+                 
+                    <a href="{% url 'test' %}">Statistiques</a>
+                    
+                  </li>
+                  <li>
+                    <a href="{% url 'contactez_nous' %}">Contactez Nous</a>
+                  </li>
+                  <li class="btn-conx">
+                    <a href="{% url 'login_user' %}">Connexion</a>
+                  </li>
+                </ul>
+              </nav>
+                     {% endif %}
+
+              <div class="hamburger-menu d-lg-none">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+     
+      {% comment %} <div class="nav-bar">
+        <div class="container">
+          <div class="row">
+            <div class="col-9 d-flex flex-wrap justify-content-between align-items-center">
+              <div class="site-branding d-flex align-items-center">
+                <link class="d-block" href="/" rel="home">
+                  <img class="d-block" src="{% static 'images/logo1.png' %}" alt="logo"/>
+                </link>
+              </div>
+              
+            <nav class="site-navigation d-flex justify-content-end align-items-center">
+            #
+            </div>
+            <div class="col-3 d-flex flex-wrap justify-content-between align-items-end">
+              <div class="vh-header--account">
+                <div class="dropdown show">
+                  <a class="btn btn btn-warning dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+
+                    <span>
+                      <strong>
+                      Othmane
+                      </strong>
+                    </span>
+                  </a>
+                  <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
+                    <div class="d-lg-flex justify-content-between dropdown-item">
+                      <span class="text-gray text-height-1">
+                      Benevole
+                      </span>
+                    </div>
+                    <a class="dropdown-item" href="/monespace">
+                      Mon espace
+                    </a>
+                    <button class="dropdown-item">
+                      Déconnexion
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      </div> {% endcomment %}
+  </header>
+
+    <div class="swiper-container hero-slider">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide hero-content-wrap">
+          <img src="{% static 'images/v4.jpg' %}" alt="" />
+
+          <div class="hero-content-overlay position-absolute w-100 h-100">
+            <div class="container h-100">
+              <div class="row h-100">
+                <div
+                  class=" col-lg-8 d-flex flex-column justify-content-center align-items-start"
+                >
+                  <header class="">
+                    <h1>Bienvenue</h1>
+                    <h2>Sur la plateforme E-Bénévole une initiative sociale au service du monde associatif</h2>
+                  </header>
+                  <!-- .entry-header -->
+                  <!-- .entry-content -->
+
+                  <footer
+                    class="entry-footer d-flex flex-wrap align-items-center mt-5"
+                  >
+                    
+                  </footer>
+                  <!-- .entry-footer -->
+                </div>
+                <!-- .col -->
+              </div>
+              <!-- .row -->
+            </div>
+            <!-- .container -->
+          </div>
+          <!-- .hero-content-overlay -->
+        </div>
+        <!-- .hero-content-wrap -->
+
+        <div class="swiper-slide hero-content-wrap">
+          <img src="{% static 'images/rsize4.jpg' %}" alt="" />
+
+          <div class="hero-content-overlay position-absolute w-100 h-100">
+            <div class="container h-100">
+              <div class="row h-100">
+                <div
+                  class="col-12 col-lg-8 d-flex flex-column justify-content-center align-items-start"
+                >
+                  <header class="entry-header">
+                    <h1></h1>
+                    <h4>Main dans la main nous nous portons volontaires pour construire pour demain</h4>
+                  </header>
+                  <!-- .entry-header -->
+
+                  <div class="entry-content mt-4">
+                    <p>
+                      
+                    </p>
+                  </div>
+                  <!-- .entry-content -->
+
+                  <footer
+                    class="entry-footer d-flex flex-wrap align-items-center mt-5"
+                  >
+                    
+                  </footer>
+                  <!-- .entry-footer -->
+                </div>
+                <!-- .col -->
+              </div>
+              <!-- .row -->
+            </div>
+            <!-- .container -->
+          </div>
+          <!-- .hero-content-overlay -->
+        </div>
+        <!-- .hero-content-wrap -->
+
+        <div class="swiper-slide hero-content-wrap">
+          <img src="{% static 'images/resize5.jpg' %}" alt="" />
+
+          <div class="hero-content-overlay position-absolute w-100 h-100">
+            <div class="container h-100">
+              <div class="row h-100">
+                <div
+                  class="col-12 col-lg-8 d-flex flex-column justify-content-center align-items-start"
+                >
+                  <header class="entry-header">
+                   <h4>Devenir bénévole  </h4>
+                  </header>
+                  <!-- .entry-header -->
+
+                  <div class="entry-content mt-4">
+                    <p>
+                     
+                    </p>
+                  </div>
+                  <!-- .entry-content -->
+
+                  <footer
+                    class="entry-footer d-flex flex-wrap align-items-center mt-5"
+                  >
+                 
+                  </footer>
+                  <!-- .entry-footer -->
+                </div>
+                <!-- .col -->
+              </div>
+              <!-- .row -->
+            </div>
+            <!-- .container -->
+          </div>
+          <!-- .hero-content-overlay -->
+        </div>
+        <!-- .hero-content-wrap -->
+      </div>
+      <!-- .swiper-wrapper -->
+
+      <div class="pagination-wrap position-absolute w-100">
+        <div class="container">
+          <div class="swiper-pagination"></div>
+        </div>
+        <!-- .container -->
+      </div>
+      <!-- .pagination-wrap -->
+
+      <!-- Add Arrows -->
+      <div
+        class="swiper-button-next flex justify-content-center align-items-center"
+      >
+        <span
+          ><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z"
+            />
+            </svg>
+        </span>
+      </div>
+
+      <div
+        class="swiper-button-prev flex justify-content-center align-items-center"
+      >
+        <span
+          ><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z"
+            /></svg>
+        </span>
+      </div>
+    </div>
+    <!-- .hero-slider -->
+
+    <div class="home-page-icon-boxes">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-4 mt-4 mt-lg-0">
+            <div class="icon-box active"  style="width:320px; height:320px;">
+              <figure class="d-flex justify-content-center">
+                <img src="{% static 'images/hands-gray.png' %}" alt="" />
+                <img src="{% static 'images/hands-white.png' %}" alt="" />
+              </figure>
+
+              <header class="entry-header">
+                <h3 class="entry-title">La solidarité</h3>
+              </header>
+
+              <div class="entry-content">
+                <p>
+                  <br>
+                  Vous êtes sensibles à des causes citoyennes et vous vous engagez dans un esprit d'entraide et de solidarité.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4 mt-4 mt-lg-0">
+            <div class="icon-box" style="width:320px; height:320px;">
+              <figure class="d-flex justify-content-center">
+                <img src="{% static 'images/donation-gray.png' %}" alt="" />
+                <img src="{% static 'images/donation-white.png' %}" alt="" />
+              </figure>
+
+              <header class="entry-header">
+                <h3 class="entry-title">Le sens de l'engagement</h3>
+              </header>
+
+              <div class="entry-content">
+                <p>
+                  Votre engagement participe au changement positif de la société. Mobilisez-vous et soyez fier de votre implication.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4 mt-4 mt-lg-0">
+            <div class="icon-box " style="width:320px; height:320px;">
+              <figure class="d-flex justify-content-center">
+                <img src="{% static 'images/charity-gray.png' %}" alt="" />
+                <img src="{% static 'images/charity-white.png' %}" alt="" />
+              </figure>
+
+              <header class="entry-header">
+                <h3 class="entry-title">Le respect</h3>
+              </header>
+
+              <div class="entry-content">
+                <p>
+                  <br>
+                  Vous offrez votre écoute et votre bienveillance sans porter de jugement.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- .row -->
+      </div>
+      <!-- .container -->
+    </div>
+    <!-- .home-page-icon-boxes -->
+
+
+    <div class="our-causes">
+      <div class="container">
+          <div class="row">
+              <div class="coL-12">
+                  <div class="section-heading">
+                      <h2 class="entry-title">Les missions à venir</h2>
+                  </div><!-- .section-heading -->
+              </div><!-- .col -->
+          </div><!-- .row -->
+
+          <div class="row">
+              <div class="col-12">
+                  <div class="swiper-container causes-slider">
+                      <div class="swiper-wrapper">
+                        {% for mis in mission %}
+
+                        <div class="swiper-slide">
+                              <div class="cause-wrap">
+                                  <figure class="m-0">
+                                    <img src="{{mis.photo_mission.url}}" alt=""  style="width: 350px; height:200px;" />
+
+                                      <div class="figure-overlay d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+                                     
+                                        {% if user.est_benevolat%}
+                                        
+                                        <a href="{% url 'ConfirmeParticipation' mis.id %}" class="btn gradient-bg mr-2">Participe</a>
+                                        {% else %}
+                                        
+                                
+                                        <a href="{% url 'login_user' %}" class="btn gradient-bg mr-2">Participe</a>
+                                      </div><!-- .figure-overlay -->
+                                        {% endif %}
+                                  </figure>
+
+                                  <div class="cause-content-wrap" style="height:300px;">
+                                      <header class="entry-header d-flex flex-wrap align-items-center">
+                                        <h3 class="entry-title w-100 m-0">
+                                          <a href="#">{{mis.nom}}</a>
+                                        </h3>
+                                       </header><!-- .entry-header -->
+
+                                       <div class="entry-content">
+                                        <p class="m-0">
+                                          {{mis.description}}
+                                        </p>
+                                      </div>
+                                      <div class="fund-raised w-100">
+                                          <div class="fund-raised-bar-1 barfiller">
+                                              <div class="tipWrap">
+                                                  <span class="tip"></span>
+                                              </div><!-- .tipWrap -->
+
+                                              <span class="fill" data-percentage="83"></span>
+                                          </div><!-- .fund-raised-bar -->
+
+                                          <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
+                                              <div class="fund-raised-total mt-4">
+                                                {{mis.domaine}}  
+                                              </div><!-- .fund-raised-total -->
+
+                                              <div class="fund-raised-goal mt-4">
+                                                {{mis.lieu}}
+                                              </div><!-- .fund-raised-goal -->
+                                          </div><!-- .fund-raised-details -->
+                                      </div><!-- .fund-raised -->
+                                  </div><!-- .cause-content-wrap -->
+                              </div><!-- .cause-wrap -->
+                          </div><!-- .swiper-slide -->
+
+                          
+
+                          {% endfor %}
+                          {% for mis in mission %}
+
+                          <div class="swiper-slide">
+                              <div class="cause-wrap">
+                                  <figure class="m-0">
+                                    <img src="{{mis.photo_mission.url}}" alt=""  style="width: 350px; height:200px;" />
+
+                                      <div class="figure-overlay d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+                                        <a href="{% url 'login_user' %}" class="btn gradient-bg mr-2">Participe</a>
+                                      </div><!-- .figure-overlay -->
+                                  </figure>
+
+                                  <div class="cause-content-wrap" style="height:300px;">
+                                    <header class="entry-header d-flex flex-wrap align-items-center">
+                                        <h3 class="entry-title w-100 m-0">
+                                          <a href="#">{{mis.nom}}</a>
+                                        </h3>
+                                       </header><!-- .entry-header -->
+
+                                       <div class="entry-content">
+                                        <p class="m-0">
+                                          {{mis.description}}
+                                        </p>
+                                      </div>
+                                      <div class="fund-raised w-100">
+                                          <div class="fund-raised-bar-1 barfiller">
+                                              <div class="tipWrap">
+                                                  <span class="tip"></span>
+                                              </div><!-- .tipWrap -->
+
+                                              <span class="fill" data-percentage="83"></span>
+                                          </div><!-- .fund-raised-bar -->
+
+                                          <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
+                                            <div class="fund-raised-total mt-4">
+                                              {{mis.domaine}}  
+                                            </div><!-- .fund-raised-total -->
+
+                                            <div class="fund-raised-goal mt-4">
+                                              {{mis.lieu}}
+                                            </div><!-- .fund-raised-goal -->
+                                          </div><!-- .fund-raised-details -->
+                                      </div><!-- .fund-raised -->
+                                  </div><!-- .cause-content-wrap -->
+                              </div><!-- .cause-wrap -->
+                          </div><!-- .swiper-slide -->
+
+                          
+
+                          {% endfor %}
+
+
+
+
+                        
+                      </div><!-- .swiper-wrapper -->
+
+                  </div><!-- .swiper-container -->
+
+                  <!-- Add Arrows -->
+                  <div class="swiper-button-next flex justify-content-center align-items-center">
+                      <span><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z"/></svg></span>
+                  </div>
+
+                  <div class="swiper-button-prev flex justify-content-center align-items-center">
+                      <span><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z"/></svg></span>
+                  </div>
+              </div><!-- .col -->
+      </div>
+    </div>
+
+
+
+   </div>
+
+    
+    
+
+
+
+
+    <div class="home-page-welcome">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-lg-6 order-2 order-lg-1">
+            <div class="welcome-content">
+              <header class="entry-header">
+                <h2 class="entry-title">Qu'est ce que E-Bénévolat ?</h2>
+              </header>
+              <!-- .entry-header -->
+
+              <div class="entry-content mt-5">
+                <p>
+                  E-Bénévole est une initiativede qui a pour vocation de créer des passerelles entre le monde associatif et les bénévoles à l’aide de la plateforme internet www.E-Bénévolat.ma.
+
+                  La plateforme digitale E-Bénévole  facilite la mise en relation des associations existantes avec des jeunes bénévoles souhaitant donner de leurs temps.
+                  
+                  E-Bénévole  collabore avec des associations de toutes tailles dans toutes les villes du Maroc. Ensemble, des actions concrètes sont développées avec l'aide de bénévoles sans apport financier. L’idée est de donner de son temps, et non pas de son argent.
+                </p>
+              </div>
+              <!-- .entry-content -->
+
+              <div class="entry-footer mt-5">
+                <a href="#" class="btn gradient-bg mr-2">
+Lire la suite</a>
+              </div>
+              <!-- .entry-footer -->
+            </div>
+            <!-- .welcome-content -->
+          </div>
+          <!-- .col -->
+
+          <div class="col-12 col-lg-6 mt-4 order-1 order-lg-2">
+            <img style="border-radius: 10px;" src="{% static 'images/cczen.jpg'%}" alt="welcome" />
+          </div>
+          <!-- .col -->
+        </div>
+        <!-- .row -->
+      </div>
+      <!-- .container -->
+    </div>
+    <!-- .home-page-icon-boxes -->
+     
+      
+
+
+
+     <div class="our-causes">
+      <div class="container">
+          <div class="row mb-3">
+              <div class="coL-12">
+                  <div class="section-heading">
+                      <h2 class="entry-title">    Espace Temoignages  </h2>
+                  </div><!-- .section-heading -->
+              </div><!-- .col -->
+          </div><!-- .row -->
+
+          <div class="row">
+              <div class="col-12">
+                <div class="swiper-container causes-slider">
+                  <div class="swiper-wrapper">
+                    {% for tem in temoignage %}
+                    <div class="swiper-slide">
+                      <div class="cause-wrap">
+                    <div class="item">
+                      <div class="card card-shadow border-1 mb-4" style="height:300px;">
+                        <div class="card-body">
+                          <div class="position-relative thumb bg-success-gradiant d-inline-block text-white mb-4"> 
+                            <img src="{% static 'images/im1.jpeg'%}" alt="{{tem.nom}}" class="thumb-img position-absolute rounded-circle"  style="width: 50px; height:50px;"/>
+                          {{tem.nom}}
+                        </div>
+                          <h5 class="font-weight-light mt-3" style="height:100px;">{{tem.message}}</h5>
+                          <span class="devider d-inline-block my-3"></span>
+                         <div class="row">
+                          <div class="col-6">
+
+                            <h6 class="font-weight-bold position-sticky">{{tem.nom}}
+                        </h6>
+                        </div>
+                        <div class="col-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg>
+                      </div>
+                         </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  
+                {% endfor %}
+
+                {% for tem in temoignage %}
+                <div class="swiper-slide">
+                  <div class="cause-wrap">
+                <div class="item">
+                  <div class="card card-shadow border-1 mb-4" style="height:300px;">
+                    <div class="card-body">
+                      <div class="position-relative thumb bg-success-gradiant d-inline-block text-white mb-4">  
+                                  <img src="{% static 'images/im1.jpeg'%}" alt="{{tem.nom}}" class="thumb-img position-absolute rounded-circle"  style="width: 50px; height:50px;"/>
+                                  {{tem.nom}}
+
+                      </div>
+                      <h5 class="font-weight-light mt-3" style="height:100px;">{{tem.message}}</h5>
+                          <span class="devider d-inline-block my-3"></span>
+                          <div class="row">
+                            <div class="col-6">
+  
+                              <h6 class="font-weight-bold position-sticky">{{tem.nom}}
+                          </h6>
+                          </div>
+                          <div class="col-6">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                          </svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                          </svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                          </svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                          </svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                          </svg>
+                        </div>
+                           </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              
+            {% endfor %}
+               
+
+                        
+                </div><!-- .swiper-wrapper -->
+
+            </div><!-- .swiper-container -->
+
+            <div class="swiper-button-next flex justify-content-center align-items-center">
+              <span><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z"/></svg></span>
+          </div>
+
+          <div class="swiper-button-prev flex justify-content-center align-items-center">
+              <span><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z"/></svg></span>
+          </div>
+              </div><!-- .col -->
+          </div><!-- .row -->
+      </div><!-- .container -->
+    </div>
+
+
+
+
+
+
+
+
+  
+
+    
+
+
+    
+
+    <div class="home-page-limestone">
+      <div class="container">
+        <div class="row align-items-end">
+          <div class="coL-12 col-lg-6">
+            <div class="section-heading">
+              <h2 style=" font-family:'AmstelvarAlpha';
+              font-style: italic;">
+                E-Bénevolat : la référence du bénévolat au Maroc qui a pour vocation de créer des passerelles entre le monde associatif et les bénévoles à l’aide de la plateforme
+              </h2>
+
+              <p class="mt-5">
+                La plateforme digitale E-Bénevolat connecte les bénévoles aux associations partenaires et créer  une palette des Missions.
+              </p>
+            </div>
+            <!-- .section-heading -->
+          </div>
+          <!-- .col -->
+
+          <div class="col-12 col-lg-6">
+            <div class="milestones d-flex flex-wrap justify-content-between">
+              <div class="col-12 col-sm-4 mt-5 mt-lg-0">
+                <div class="counter-box">
+                  <div class="d-flex justify-content-center align-items-center">
+                    <img src="{% static 'images/teamwork.png' %}" alt="" />
+                  </div>
+
+                  <div
+                    class="d-flex justify-content-center align-items-baseline"
+                  >
+                    <div
+                      class="start-counter"
+                      data-to="{{countB}}"
+                      data-speed="2000"
+                    ></div>
+                    <div class="counter-k"></div>
+                  </div>
+
+                  <h3 class="entry-title"> Bénevoles</h3>
+                  <!-- entry-title -->
+                </div>
+                <!-- counter-box -->
+              </div>
+              <!-- .col -->
+
+              <div class="col-12 col-sm-4 mt-5 mt-lg-0">
+                <div class="counter-box">
+                  <div class="d-flex justify-content-center align-items-center">
+                    <img src="{% static 'images/donation.png' %}" alt="" />
+                  </div>
+
+                  <div
+                    class="d-flex justify-content-center align-items-baseline"
+                  >
+                    <div
+                      class="start-counter"
+                      data-to="{{countM}}"
+                      data-speed="2000"
+                    ></div>
+                  </div>
+
+                  <h3 class="entry-title"> Missions </h3>
+                  <!-- entry-title -->
+                </div>
+                <!-- counter-box -->
+              </div>
+              <!-- .col -->
+
+              <div class="col-12 col-sm-4 mt-5 mt-lg-0">
+                <div class="counter-box">
+                  <div class="d-flex justify-content-center align-items-center">
+                    <img src="{% static 'images/dove.png' %}" alt="" />
+                  </div>
+
+                  <div
+                    class="d-flex justify-content-center align-items-baseline"
+                  >
+                    <div
+                      class="start-counter"
+                      data-to="{{countA}}"
+                      data-speed="2000"
+                    ></div>
+                  </div>
+
+                  <h3 class="entry-title">Associations</h3>
+                  <!-- entry-title -->
+                </div>
+                <!-- counter-box -->
+              </div>
+              <!-- .col -->
+            </div>
+            <!-- .milestones -->
+          </div>
+          <!-- .col -->
+        </div>
+        <!-- .row -->
+      </div>
+      <!-- .container -->
+    </div>
+    <!-- .our-causes -->
+
+
+    
+
+    <footer class="site-footer">
+      <div class="footer-widgets ">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="foot-about">
+                <h2>
+                  <a class="foot-logo" href="#"
+                    ><img src="{% static 'images/footer-logo3.png' %}" alt=""
+                  /></a>
+                </h2>
+
+                <p>
+                  Le bénévolat est l'engagement libre et gratuit de personnes qui agissent,
+                  pour d'autres ou pour l'intérêt collectif, dans une structure débordant celle de la simple entraide familiale ou amicale.
+                  
+                </p>
+
+                <ul class="d-flex flex-wrap align-items-center">
+                  <li>
+                    <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-behance"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                  </li>
+                </ul>
+              </div>
+              <!-- .foot-about -->
+            </div>
+            <!-- .col -->
+            <div class="col-12 col-md-6 col-lg-2 mt-5 mt-md-0">
+              
+            </div>
+            <!-- .col -->
+
+            <div class="col-12 col-md-6 col-lg-4 mt-5 mt-md-0">
+              <h2>Liste des Liens</h2>
+
+              <ul>
+                <li><a href="{% url 'contactez_nous' %}">Contactez Nous</a></li>
+                <li><a href="{% url 'login_user' %}">Connexion</a></li>
+                <li><a href="{% url 'registerB' %}">je deviens bénévole</a></li>
+                <li><a href="{% url 'registerA' %}">Je suis une association</a></li>
+
+              </ul>
+              <!-- .foot-latest-news -->
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3 mt-5 mt-md-0">
+              <div class="foot-contact">
+                <h2>Contact</h2>
+
+                <ul>
+                 
+                  <li>
+                    <i class="fa fa-envelope"></i
+                    ><span>Othmane.boudali01@gmail.com.com</span>
+                  </li>
+                  
+                
+                </ul>
+              </div>
+              <!-- .foot-contact -->
+
+              <div class="subscribe-form">
+                <form class="d-flex flex-wrap align-items-center">
+                  <input type="email" placeholder="Your email" />
+                  <input type="submit" value="send" />
+                </form>
+                <!-- .flex -->
+              </div>
+              <!-- .search-widget -->
+            </div>
+            <!-- .col -->
+          </div>
+          <!-- .row -->
+        </div>
+        <!-- .container -->
+      </div>
+      <!-- .footer-widgets -->
+
+      <div class="footer-bar">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <p class="m-0">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              
+                             E-Bénévolat 
+                <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                <a  target="_blank">OTHMANE&BOUDALI</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              </p>
+            </div>
+            <!-- .col-12 -->
+          </div>
+          <!-- .row -->
+        </div>
+        <!-- .container -->
+      </div>
+      <!-- .footer-bar -->
+    </footer>
+    <!-- .site-footer -->
+
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script
+      type="text/javascript"
+      src="{% static 'js/jquery.collapsible.min.js' %}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{% static 'js/swiper.min.js' %}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{% static 'js/jquery.countdown.min.js' %}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{% static 'js/circle-progress.min.js' %}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{% static 'js/jquery.countTo.min.js' %}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{% static 'js/jquery.barfiller.js' %}"
+    ></script>
+    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+  </body>
+</html>

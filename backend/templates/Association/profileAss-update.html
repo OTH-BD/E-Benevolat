@@ -1,0 +1,23 @@
+{% extends 'home/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="container mt-5 pb-5">
+    <h1 class="text-title text-center mr-5">
+       Modifier votre Association
+    </h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{user_form|crispy}}
+        {{profile_form|crispy}}
+        
+        <div class="col-11 text-center mt-3">      
+            <input class="btn gradient-bg mt-4" type="submit" value="Modifier profile" />
+        </div>
+        
+      
+    </form>
+</div>
+</div>
+{% endblock content %}

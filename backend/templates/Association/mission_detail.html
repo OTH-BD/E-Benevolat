@@ -1,0 +1,36 @@
+{% extends 'home/base.html' %} {% block content %} {% load crispy_forms_tags %}
+
+<div  class="container my-4 mt-5 pb-5">
+
+  <div style="width:50%;height:50%;" class="container">
+
+
+  
+    <div  class="card-header">
+      <img src="{{mission.photo_mission.url}}" class="card-img-top" alt="..." /> 
+        <small class="text-muted">{{mission.date_publier}}</small>
+
+      <input
+        class="form-control"
+        type="text"
+        value="{{mission.domaine}}"
+        readonly
+      />
+      <h5 class="card-title mt-3">{{mission.nom}}</h5>
+      <p class="card-text">{{mission.description}}</p>
+      <p class="card-text">
+        {{mission.nom_association}}
+      </p>
+    </div>
+    
+      <div class="col-11 text-center mt-3">      
+            <a style=" padding: 17px 46px;"; class="btn gradient-bg mt-4" href="{% url 'mission_update' mission.slug %}">Modifier</a>
+         
+            <a class="btn gradient-bg mt-4" href="{% url 'mission_delete' mission.slug %}">Supprimer</a>
+      </div>
+        
+    
+</div>
+
+</div>
+{% endblock content %}

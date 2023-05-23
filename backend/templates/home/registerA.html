@@ -1,0 +1,280 @@
+{% extends 'home/base.html' %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<h1 class="text-title text-center mt-5 mr-5">
+  Formulaire d'inscription - Association
+</h1>
+
+<div class="container border mt-4 p-4 mb-5">
+       
+    <div class="container mt-5 pb-5">
+        
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+       
+      <div class=" shadow mt-3 ml-5">
+        <form method="POST" class="mt-5" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="cards">
+            <div class="card-headers">
+              <div class="row justify-content-around">
+      
+                <div class="col-2">
+                  <div class="image-upload">
+                    <label for="file-input">
+                      <img class="previewImg" style="width: 130px; height: 130px;" />
+                    </label>
+              
+                    <input id="file-input"  class="form-control" type="file"  style="display: none;" name="logo" />
+                    </div>
+                  </div>
+                <div class="form-group col-6">
+                  <div class="row mt-2">
+                      <div class="col-4 titlelab">
+                        <label>
+                          Nom d'utilisateur :
+                           
+                        </label>
+                      </div>
+                      <div class="col-7">
+                        <input type="text" name="username" class="form-control" />
+                      </div>
+                    </div> 
+                      <div class="row mt-2">
+                      <div class="col-4">
+                        <label>
+                          Email :
+                           
+                        </label>
+                      </div>
+                      <div class="col-7">
+                        <input type="email" name="email" class="form-control" />
+                      </div>
+                    </div>
+                    <div class="row mt-2">
+                      <div class="col-4">
+                        <label>
+                          Mot de passe :
+                           
+                        </label>
+                      </div>
+                      <div class="col-7">
+                        <input type="password" name="password1" class="form-control" />
+                      </div>
+                    </div>  
+                      <div class="row mt-2">
+                      <div class="col-4">
+                        <label>
+                         Comfirmer mot de passe :
+                           
+                        </label>
+                      </div>
+                      <div class="col-7">
+                        <input type="password" name="password2" class="form-control" />
+                      </div>
+                    </div>
+                
+                </div>
+              </div>
+            
+            </div>
+            <div class="card-body pt-3"> 
+               <div class="row mt-3">
+                    <div class="col-4">
+                      <label>
+                        Nom d'association :
+                         
+                      </label>
+                    </div>
+                    <div class="col-7">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="nom_association"
+                      />
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-4 mt-3">
+                      <label>
+                        Nom complet du président :
+                         
+                      </label>
+                    </div>
+                    <div class="col-7 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="nom_complet"
+                      />
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-4">
+                      <label>
+                        Téléphone :
+                         
+                      </label>
+                    </div>
+                    <div class="col-7">
+                      <input type="text" class="form-control" name="telephone" />
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                      <div class="col-4 mt-2">
+                          <label for="exampleFormControlTextarea3">  Description :
+                               </label>
+                      </div>
+                          <div class="col-7 mt-2">
+                              <textarea class="form-control" id="exampleFormControlTextarea3" rows="4" name="description"></textarea>
+  
+                      </div>
+                      
+                    </div>
+                    <div class="row mt-3">
+                      <div class="col-4 mt-2">
+                          <label for="exampleFormControlTextarea3">   Adresse :
+                               </label>
+                      </div>
+                          <div class="col-7 mt-2">
+                              <textarea class="form-control" id="exampleFormControlTextarea3" rows="4"name="adresse"
+                              ></textarea>
+  
+                      </div>
+                      
+                    </div>
+              
+                    <div class="row mt-2">
+                      <div class="col-4 mt-3">
+                        <label>
+                          Ville :
+                           
+                        </label>
+                      </div>
+                      <div class="col-7 mt-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="ville"
+                        />
+                      </div>
+                    </div>
+             
+             
+              <div class="row mt-3">
+                <div class="col-4 mt-2">
+                  <label for="exampleFormControlTextarea6">
+                    Nombre de membres du bureau :
+                     
+                  </label>
+                </div>
+                  <div class="col-7 ">
+                      <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example"  name="nbr_membre_bureau">
+                    <option selected>- Choisir une valeur -</option>
+                    <option value="de 0 a 5">de 0 a 5</option>
+                    <option value="de 5 a 10">de 5 a 10</option>
+                    <option value="de 10 a plus">de 10 a plus</option>
+                  </select>
+              </div>
+  
+                </div>
+                <div class="row mt-3">
+                  <div class="col-4 mt-2">
+                      <label for="exampleFormControlTextarea6">
+                    Nombre de bénéficiaires :
+                     
+                  </label>
+              </div>
+                  <div class="col-7 ">
+  
+                      <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example" name="nbr_beneficiere">
+                          <option selected>- Choisir une valeur -</option>
+                    <option value="0 a 50">0 a 50</option>
+                    <option value="50 a  plus">50 a plus</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mt-3">
+                  <div class="col-4 mt-2">
+                      <label for="exampleFormControlTextarea6">
+                      Site web / page Facebook :
+                       
+                    </label>
+                    </div>
+                    <div class="col-7 ">
+  
+                    <input
+                      type="text"
+                      class="form-control "
+                      name="siteweb"
+                    />
+                  </div>
+              </div>
+  
+  
+              <div class="row mt-3">
+                  <div class="col-4 mt-2">
+                      <label for="exampleFormControlTextarea6">
+                          Activité/préférences/centre:
+                           
+                    </label>
+                  </div>
+                  <div class="col-7">
+                    <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example"  name="activiter_prefere">
+                  <option selected>- Choisir une valeur -</option>
+                  <option value="Sport">Sport</option>
+                  <option value="Sport">Santer</option>
+
+                  <option value="Sport">Education</option>
+                  <option value="Enseignement">Enseignement</option>
+                  <option value="Protection de lenvironnement">Protection de lenvironnement</option>
+
+                  <option value="Handicap">Handicap</option>
+                  <option value="Droits de la femme">Droits de la femme</option>
+                  <option value="Autres Domaine">Autres Domaine</option>
+
+                </select>
+            </div>
+              </div>
+             
+  </div>
+  <div class="col-11 text-center mt-3">      
+       
+    
+            <button class="btn gradient-bg" type="submit">Créer Compte</button>
+            
+        
+       
+  </div>
+<!--         
+              <div class="col-12 text-center mt-3">
+                <input
+                  class="btn login100-form-bgbtn"
+                  type="submit"
+                  value="Signup"
+                />
+              </div> -->
+            </div>
+          </div>
+          <div class="border-top mt-4 pt-2 ml-5">
+            <small
+              >Si vous avez déjà un compte, vous pouvez se connecter<a
+                href="{% url 'login_user' %}"
+              >
+                Connecter
+              </a></small
+            >
+          </div>
+        </form>
+      </div>
+</div>
+{% endblock content %}
+
+

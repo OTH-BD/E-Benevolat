@@ -1,0 +1,48 @@
+{% extends 'home/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<body class="single-page contact-page">
+   
+    
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>Espace Temoignages</h1>
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .page-header -->
+    
+        <div class="contact-page-wrap ml-5">
+            <div class="container ">
+                <div class="row ml-5">
+                
+                    <div class="col-12 col-lg-9 ml-5 pl-5">
+                        <form class="contact-form text-center ml-5 " method="POST">
+                            {% csrf_token %}
+                            {% for ben in benevole_T %}
+                            <input type="text"  name="nom" value="{{ben.username}}" />
+                            {% endfor %}<!-- .contact-form -->
+
+
+                            <textarea rows="15" cols="6" placeholder="Messages" name="message"></textarea>
+    
+                            <span>
+                                <input class="btn gradient-bg" type="submit" value="Poster">
+                            </span>
+                        </form>
+    
+                    </div><!-- .col -->
+    
+                    
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div>
+    
+
+    
+    </body>
+
+    {% endblock content %}

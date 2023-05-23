@@ -1,0 +1,236 @@
+{% extends 'home/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+  <div class="container border p-4 mb-5">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class=" mt-5 pb-5">
+     
+        <div class="container shadow mt-3 ml-5">
+            <div class="container">
+            <div class="">
+              <div class="row justify-content-around">
+                <div class="col-md-3 text-center">
+                    <img class="img-fluid rounded-circle border m-2"  style="width: 210px; height:190px;"
+                        src="{{user.association.logo.url}}" alt="{{user.username}}">
+                    
+                </div>
+                <div class="form-group col-6">
+                  <div class="row mt-2">
+                      <div class="col-4">
+                        <label>
+                          Username :
+                          <span> </span>
+                        </label>
+                      </div>
+                      <div class="col-7">
+                        <input type="text" name="username" class="form-control" value="{{user.username}}" />
+                      </div>
+                    </div> 
+                      <div class="row mt-2">
+                      <div class="col-4">
+                        <label>
+                          Email :
+                          <span> </span>
+                        </label>
+                      </div>
+                      <div class="col-7">
+                        <input type="email" name="email" class="form-control" value="{{user.email}}"/>
+                      </div>
+                    </div>
+                    <div class="row mt-2">
+                      <div class="col-4">
+                        <label>
+                          Mot de pass :
+                          <span> </span>
+                        </label>
+                      </div>
+                      <div class="col-7">
+                        <input type="password" name="password1" class="form-control" value="{{user.password1}}"/>
+                      </div>
+                    </div>  
+                      <div class="row mt-2">
+                      <div class="col-4">
+                        <label>
+                         Comfirm Mot de pass :
+                          <span> </span>
+                        </label>
+                      </div>
+                      <div class="col-7">
+                        <input type="password" name="password2" class="form-control" value="{{user.password2}}" />
+                      </div>
+                    </div>
+                
+                </div>
+              </div>
+            
+            </div>
+            <div class="card-body pt-3"> 
+              
+                  <div class="row mt-2">
+                    <div class="col-4 mt-3">
+                      <label>
+                        Nom Association  :
+                        <span> </span>
+                      </label>
+                    </div>
+                    <div class="col-7 mt-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="nomComplet"
+                        value="{{user.association.nom_association}}"
+                      />
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                      <div class="col-4 mt-2">
+                          <label>
+                              Nom Complet :
+                              <span> </span>
+                            </label>
+                        </div>
+                        <div class="col-7">
+                            <input type="text" class="form-control" name="cin"  
+                            value="{{user.association.nom_complet}}" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                      <div class="col-4 mt-2">
+                        <label>
+                          Téléphone :
+                          <span> </span>
+                        </label>
+                      </div>
+                      <div class="col-7">
+                        <input type="text" class="form-control" name="telephone"  value="{{user.association.telephone}}"
+                        />
+                      </div>
+                    </div>  
+                    <div class="row mt-3">
+                        <div class="col-4">
+                            <label for="exampleFormControlTextarea3">   Description:
+                                <span> </span></label>
+                        </div>
+                            <div class="col-7 mt-2">
+                                <textarea class="form-control" id="exampleFormControlTextarea3" rows="4"
+                                name="domaine_experience"  
+                                >{{user.association.description}}</textarea>
+    
+                        </div>
+                        
+                      </div>
+                 
+                    <div class="row mt-3">
+                      <div class="col-4 mt-3">
+                          <label for="exampleFormControlTextarea3">   Adresse :
+                              <span> </span></label>
+                      </div>
+                          <div class="col-7 mt-2">
+                              <textarea class="form-control" id="exampleFormControlTextarea3" rows="4"name="adresse" 
+                            >{{user.association.adresse}} </textarea>
+                              
+  
+                      </div>
+                      
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-4 mt-2">
+                          <label>
+                            Ville :
+                            <span> </span>
+                          </label>
+                        </div>
+                        <div class="col-7">
+                                <input type="text" 
+                                 class="form-control"  name="ville" value="{{user.association.ville}}"/>
+                              </div>
+                      </div>
+                    <div class="row mt-3">
+                        <div class="col-4 mt-3">
+                          <label>
+                            nbr membre,bureau:
+                            <span> </span>
+                          </label>
+                        </div>
+                        <div class="col-7">
+                            <input type="text" 
+                             class="form-control"  
+                             name="nbr_membre_bureau"
+                             value="{{user.association.nbr_membre_bureau}}"/>
+                          </div>
+                        
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-4">
+                          <label>
+                            nbr membre beneficiere:
+                            <span> </span>
+                          </label>
+                        </div>
+                        <div class="col-7">
+                            <input type="text" 
+                             class="form-control"  
+                             name="nbr_membre_bureau"
+                             value="{{user.association.nbr_beneficiere}}"/>
+                          </div>
+                        
+                      </div>
+                   
+                      <div class="row mt-3">
+                        <div class="col-4 mt-2">
+                          <label>
+                            Site Web                            <span> </span>
+                          </label>
+                        </div>
+                        <div class="col-7">
+                            <input type="text" 
+                             class="form-control"  
+                             name="nbr_membre_bureau"
+                             value="{{user.association.siteweb}}"/>
+                          </div>
+                        
+                      </div>
+                      
+  
+              <div class="row mt-3">
+                  <div class="col-4 mt-3">
+                      <label for="exampleFormControlTextarea6">
+                          Activité/préférences/centre :
+                          <span> </span>
+                    </label>
+                  </div>
+                  <div class="col-7">
+                    
+                <input type="text" 
+                class="form-control"  
+                name="activiter_prefere"  
+                value="{{user.association.activiter_prefere}}" />         
+            </div>
+              </div>
+             
+  </div>
+              
+  <div class="col-11 text-center mt-3">      
+       
+    <a href="{% url 'profileAssUpdate' %}" class="btn gradient-bg mt-4" type="submit">Modifier Profile</a>
+  
+    
+
+
+</div>
+              <div class="col-12 text-center mt-3 m-0">
+                
+              </div>
+            </div>
+          </div>
+          
+      </div>
+</div>
+{% endblock content %}
